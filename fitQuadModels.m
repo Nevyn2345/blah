@@ -2,6 +2,25 @@ function [ modelCoeffs ] = fitQuadModels( X, y )
 %FITQUADMODEL Generic function for fitting quadratic models
 %   See also surf, meshgrid, linspace
 
+% Check correct number of inputs
+narginchk( 2, 2)
+
+% Validate X
+validateattributes(X, {'double'}, {'2d', 'real', 'nonempty'})
+if size(X, 2) >= 3
+    error('fitQuadModel:TooManyCols', 'X must have one or two columns.')
+end % if
+if any(isinf( X(:) ) )
+    error('fitQuadModel:InfValues', 'X cannot contain Inf or -Inf')
+end % if
+
+% Validate Y
+validateattributes(Y, {'double'}, ...
+    {'column', 'real', 'nonempty', 'numel', numel(X(:,1))})
+if any(isinf( y ) )
+    error('fitQuadModel:InfValues', 'y cannot contain Inf or -Inf')
+end % if
+
 % Clean the data
 [XClean, yClean] = removeNaNs(X, y);
 
