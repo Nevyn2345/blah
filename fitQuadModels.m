@@ -15,7 +15,7 @@ end % fitQuadModel
 
 function [XClean, yClean] = removeNaNs(X, y)
 
-missingVals = any(isnan([X, y]), 2)
+missingVals = any(isnan([X, y]), 2);
 XClean = X(~missingVals, :);
 yClean = y(~missingVals);
 
@@ -36,7 +36,7 @@ switch nVars
         error('FitQuadModel:WrongNumberOfVars', ...
             'X must have one or two columns')
 end % switch/case
-modelCoeffs = A\yClean
+modelCoeffs = A\yClean;
 end % fitmodel
 
 function visResults(X, y, XClean, modelCoeffs)

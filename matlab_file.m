@@ -71,3 +71,15 @@ surf(X1, X2, modelOnGrid, 'EdgeAlpha', 0);
 % EdgeAlpha - transparency of edges in the grid
 %shading interp % Use interpolated shading.
 
+%% Test FitQuadModels
+
+% test 1D exampls
+x = MedData.Age;
+y = MedData.BPDiff;
+modelcoeffs = fitQuadModels(x, y)
+
+% Test the 2D exampls
+x1 = MedData.Height; % x1
+x2 = MedData.Waist; % x2
+y = MedData.Weight; % y
+modelcoeffs = fitQuadModels([x1, x2], y)
